@@ -142,3 +142,37 @@ WHERE xxxxx IS NULL or aaaaa > 0000
 /*(7 de Mayo)JOIN:*/
 SELECT j.job_title, e.last_name FROM jobs j
 JOIN employees e ON j.job_id = e.job_id
+ 
+ /* añadimos apellido y nombre en la tabla profesor */
+
+INSERT INTO Profesores(apellido, nombre)
+VALUES ("Andres", "navarro"),
+       ("Mayorna", "tomas"),
+       ("Villace", "federico"),
+       ("Meltrovich", "Eduardo"),
+	   ("Urso", "Maximiliano"),
+	   ("Alborno", "jose"),
+	   ("Rovaletti", "Enrico"),
+	   ("Salomon", "Alejandro");
+
+
+
+INSERT INTO Materias(nombre, año)
+VALUES ("Diseño multimedial", "5"),
+       ("Diseño de software", "5"),
+	   ("Programacion web", "5"),
+	   ("Adm. y gestion de base de datos", "5"),
+	   ("Disp. electronicos programaables", "5"),
+	   ("Redes de datos", "5");
+
+
+
+INSERT INTO asignacion(materia_id, profesor_id, division_id)
+VALUES ((SELECT materia_id FROM Materias WHERE nombre = "Programacion Web"),
+       (SELECT profesor_id FROM Profesores WHERE apellido like "navarro"),
+	   (SELECT division_id FROM division WHERE nombre = "5", "D"));
+
+
+
+UPDATE Profesores SET apellido = "Navarro", nombre = "Andres"
+WHERE nombre = "navarro";
